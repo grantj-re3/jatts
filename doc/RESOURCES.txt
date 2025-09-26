@@ -1,0 +1,14 @@
+RESOURCES
+
+Resources used in writing this program.
+
+Documentation
+- https://pypi.org/project/pyopenjtalk/
+- https://r9y9.github.io/pyopenjtalk/
+- https://r9y9.github.io/pyopenjtalk/htsengine.html
+- https://ytyaru.hatenablog.com/entry/2023/02/06/000000
+
+Voices
+- https://sourceforge.net/projects/open-jtalk/files/HTS%20voice/
+- https://www.mmdagent.jp/
+

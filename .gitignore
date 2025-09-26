@@ -1,0 +1,21 @@
+*.wav
+old/
+zips/
+
+# In /etc, keep some json files & folders
+/etc/*
+!/etc/default.json
+!/etc/pyopenjtalk*.json
+!/etc/pyopenjtalk/
+!/etc/voices/
+
+# In /etc/voices/ folder (kept above), ignore everything except one voice file
+/etc/voices/*
+!/etc/voices/pyopenjtalk_mei_normal.htsvoice
+
+/tmp/*
+!/tmp/japanese-test.txt
+
+# Python virtual env (folder or symlink)
+/venv
+

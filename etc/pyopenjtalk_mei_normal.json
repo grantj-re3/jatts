@@ -1,0 +1,10 @@
+{
+  "_comment1a":		"The htsvoice-filename within the etc/voice project dir; else an absolute path to the htsvoice-filename",
+  "hts_voice_file":	"pyopenjtalk_mei_normal.htsvoice",
+
+  "_comment1b":		"Speed: normal=1.0; faster>1.0; slower<1.0",
+  "speed":		1.0,
+
+  "_comment1c":		"Pitch (Additional half tone): normal=0.0; higher>0.0; lower<0.0",
+  "add_half_tone":	0.0
+}
