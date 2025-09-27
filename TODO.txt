@@ -1,0 +1,13 @@
+TODO
+
+- Command line options. Perhaps:
+  * -s, --speed  SPEED_VALUE [default 1.0]
+  * -p, --pitch  PITCH_VALUE [default 0.0]
+  * -v, --voice-file  FILE_PATH.htsvoice
+  * -j, --json-file  FILE_PATH.json
+  * -o, --output-wav-file  FILE_PATH.wav
+- Read text from stdin.
+- Handle errors gracefully.
+- Optionally configure a jtalk dictionary?
+- Write INSTALL doco.
+

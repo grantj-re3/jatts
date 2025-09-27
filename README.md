@@ -3,6 +3,8 @@
 jaTTS (pronounced 'Jatz') is a simple Japanese Language TTS (Text-To-Speech) program built
 using the Python pyopenjtalk package.
 
+This program does not yet handle errors gracefully.
+
 
 ## Usage
 
@@ -13,6 +15,15 @@ $ bin/jatts.py tmp/japanese-test.txt	# Read and speak the content the file in th
 ```
 
 ## Configuration
+
+### JSON jatts configuration file
+
+The jatts configuration is stored at etc/default.json within the jatts project directory.
+It allows you to select which voice to use, the speaking speed and the speaking pitch.
+
+I prefer to save one or more json configuration files with descriptive names in the etc
+directory, then make default.json a symlink to my favourite one.
+
 
 ### HTS voice files
 
@@ -27,14 +38,49 @@ $ cd etc/voices
 $ ln -s ../MMDAgent/*.htsvoice  .	# Symlink to each voice file (using the same filename for the link)
 ```
 
+### Where did the voice-file used in this repository come from?
 
-### JSON voice configuration file
+The voice-file used in this repository is at
+etc/pyopenjtalk/htsvoice/mei_normal.htsvoice. The symlink at
+etc/voice/pyopenjtalk_mei_normal.htsvoice points to it. This file
+(with CC-BY-3.0 license) was sourced from the pyopenjtalk package.
+I have included it so you don't have to find the copy that comes
+with your own pyopenjtalk package.
 
-The voice configuration is stored at etc/default.json within the jatts project directory.
-It allows you to select which voice to use, the speaking speed and the speaking pitch.
+You should be able to run jatts.py without this voice-file by pointing
+to your own copy in one of the following ways.
 
-I prefer to save one or more json configuration files with descriptive names in the etc
-directory, then make default.json a symlink to my favourite one.
+Let's assume you can find your own pyopenjtalk package copy, and the path
+to it is /MY/PATH/TO/pyopenjtalk/htsvoice/mei_normal.htsvoice.
+
+
+**Alternative 1: Symlink to it from the etc/voices folder**
+
+The symlink created below with the "ln" command can be a relative path
+(not starting with "/") or absolute (starting with "/").
+
+```
+$ cd etc/voices
+$ ln -s /MY/PATH/TO/pyopenjtalk/htsvoice/mei_normal.htsvoice  my_mei_normal.htsvoice
+```
+
+Now you have a copy in the etc/voices folder which you can reference
+inside your json file with:
+
+```
+  "hts_voice_file": "my_mei_normal.htsvoice",
+```
+
+
+**Alternative 2: Point to it directly from your json file**
+
+You don't need a copy within your etc/voices folder at all. Simply
+point to the voice-file directly with an absolute path starting
+with "/".
+
+```
+  "hts_voice_file": "/MY/PATH/TO/pyopenjtalk/htsvoice/mei_normal.htsvoice",
+```
 
 
 ## Environment
