@@ -21,6 +21,7 @@ class ProjectPaths:
     _basename = None
     _stemname = None
     _top_path = None
+    _wav_path = None
 
     # ------------------------------------------------------------------------
     @classmethod
@@ -29,6 +30,7 @@ class ProjectPaths:
         cls._basename = os.path.basename(__file__)
         cls._stemname = Path(__file__).stem	# Script filename without path or file extension
         cls._top_path = Path(__file__).parent.parent.absolute()
+        cls._wav_path = str(cls._top_path / "tmp" / "out.wav")	# Default output wav file
 
     # ------------------------------------------------------------------------
     @classmethod
@@ -63,7 +65,13 @@ class ProjectPaths:
     # ------------------------------------------------------------------------
     @classmethod
     def wav_path(cls):
-        return str(cls._top_path / "tmp" / ("temp-" + cls.stemname() + ".wav"))	# FIXME
+        return cls._wav_path
+
+    # ------------------------------------------------------------------------
+    @classmethod
+    def set_wav_path(cls, in_text_file):
+        stemname = Path(in_text_file).stem
+        cls._wav_path = str(cls._top_path / "tmp" / (stemname + ".wav"))
 
 ##############################################################################
 class CommandLineOptions:
@@ -85,6 +93,9 @@ class CommandLineOptions:
         if os.path.isfile(self.text_input_fname) and os.access(self.text_input_fname, os.R_OK):
             with open(self.text_input_fname, 'r') as f:
                 self.text = f.read()
+
+            # Since we've got this far, we can update the WAV file path
+            ProjectPaths.set_wav_path(self.text_input_fname)
 
         else:
             print("File {} does not exist or is not readable".format(ProjectPaths.basename()))
