@@ -118,6 +118,11 @@ class CommandLineOptions:
         else:
             self.hts_voice_path = ProjectPaths.voices_dir() + "/" + self.hts_voice_file
 
+    # ------------------------------------------------------------------------
+    def to_str(self):
+        return "Speed: %3.1f | Pitch: %4.1f | Voice File: %s" % (
+            self.speed, self.add_half_tone, self.hts_voice_file)
+
 ##############################################################################
 class VoiceEngine:
     _audio_player_cmd = "aplay"
@@ -145,6 +150,7 @@ class VoiceEngine:
 ##############################################################################
 ProjectPaths.init_paths()
 opts = CommandLineOptions()
+print(opts.to_str())
 
 vengine = VoiceEngine(opts)
 vengine.write_wavfile()
